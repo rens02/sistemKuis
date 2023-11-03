@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"quiz/configs"
 	"quiz/controller"
 	"quiz/database"
