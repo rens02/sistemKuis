@@ -26,11 +26,9 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            PRIVATE_KEY: ${{ secrets.PRIVATE }}
             docker stop miniyusuf
             docker rm miniyusuf
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/miproyusuf
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/miproyusuf
             docker run --name miniyusuf -p 8080:8080 -d \
               -e DBHOST=${{secrets.HOST}} \
               -e DBPORT=3306 \
@@ -39,7 +37,7 @@ jobs:
               -e DBPASS=${{secrets.DBPASS}} \
               -e SECRET=${{secrets.SECRET}} \
               -e CLIENT_EMAIL=${{secrets.EMAIL}} \
-              -e PRIVATE_KEY="$PRIVATE_KEY" \ # Use the secret here
+              -e PRIVATE_KEY=${{ secrets.PRIVATE }} \ # Use the secret here
               -e FOLDER_ID=${{secrets.FOLDER}} \
               -e OPENAI_KEY=${{secrets.OPENAI}} \
               ${{ secrets.DOCKERHUB_USERNAME }}/miproyusuf
