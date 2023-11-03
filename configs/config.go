@@ -39,15 +39,6 @@ func loadConfig() *ProgramConfig {
 
 	godotenv.Load(".env")
 
-	if val, found := os.LookupEnv("SERVER"); found {
-		port, err := strconv.Atoi(val)
-		if err != nil {
-			logrus.Error("Config : invalid port value,", err.Error())
-			return nil
-		}
-		res.ServerPort = port
-	}
-
 	if val, found := os.LookupEnv("DBPORT"); found {
 		port, err := strconv.Atoi(val)
 		if err != nil {
