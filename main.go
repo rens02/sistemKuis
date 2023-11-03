@@ -51,5 +51,5 @@ func main() {
 	routes.RouteOption(e, optionControll, *config)
 	routes.RouteHistory(e, historyControll, *config)
 
-	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", config.ServerPort)).Error())
+	e.Logger.Fatal(e.Start(":8080"))
 }
